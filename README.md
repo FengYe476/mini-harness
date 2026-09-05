@@ -105,13 +105,7 @@ uv python install 3.12
 uv sync --locked
 ```
 
-### 2. Try it without an API key
-
-```sh
-uv run tui.py --demo
-```
-
-### 3. Connect the agent
+### 2. Connect the agent
 
 Set your [DeepSeek API key](https://platform.deepseek.com/api_keys) in the shell,
 then launch the TUI. No `.env` file is needed.
