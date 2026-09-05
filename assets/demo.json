@@ -6,9 +6,9 @@
   "editing": "Smooth camera motion and retimed playback; no fabricated output or code states",
   "questions": 2,
   "source_seconds": 24.495,
-  "gif_seconds": 32,
-  "gif_frames": 156,
-  "bytes": 6681083,
+  "gif_seconds": 12.8,
+  "gif_frames": 227,
+  "bytes": 8335204,
   "result": [
     {
       "outcome": "completed",
@@ -59,5 +59,21 @@
     }
   ],
   "tool_guard_recovery": "One initial write was rejected for missing overwrite=true; the agent corrected the call.",
-  "rendered_frames": 400
+  "rendered_frames": 640,
+  "gif_fps": 50,
+  "speed_multiplier_vs_previous_demo": 2.5,
+  "gif_timing": "20 ms animation steps; identical frames are coalesced losslessly.",
+  "video": {
+    "file": "assets/demo.mp4",
+    "fps": 120.0,
+    "frames": 1536,
+    "seconds": 12.8,
+    "dimensions": [
+      1280,
+      720
+    ],
+    "bytes": 4004979,
+    "camera_motion_distinct_frames_checked": 48
+  },
+  "frame_rate_note": "Camera motion is rendered at 120 fps for MP4 and 50 fps for GIF. The original TUI and file snapshots are unchanged; their content updates retain the source capture cadence."
 }

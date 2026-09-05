@@ -9,7 +9,7 @@
 <p align="center">
   <img src="assets/demo.gif" alt="Real DeepSeek Agent writes a Python file, runs it in a Docker sandbox, and answers a follow-up question" width="900">
   <br>
-  <sub>Real DeepSeek V4 Flash · writes and runs code · edited playback</sub>
+  <sub>Real DeepSeek V4 Flash · 12.8 s replay · <a href="assets/demo.mp4">120 fps video</a></sub>
 </p>
 
 ## Why mini-harness?
