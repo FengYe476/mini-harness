@@ -16,6 +16,8 @@
 
 - **Small, but complete.** About 1,600 lines of Python: eight tools, context
   compaction, request retries, streaming responses, and session memory.
+- **Tools defined with Pydantic.** Typed inputs, generated JSON Schema, and
+  validation before execution make tools easier to compose and orchestrate.
 - **A practical baseline.** Evaluated on SWE-bench Verified and Terminal-Bench
   2.1 with DeepSeek V4 Flash. See the results below.
 - **Built for learning.** Follow the [agent loop](src/mini_harness/agent.py),
@@ -44,6 +46,45 @@ The figure inserts our score into the [public Terminal-Bench 2.1 leaderboard](ht
 as of **September 4, 2026**; **13th of 19 is an illustrative position, not an official
 rank**. The Terminal-Bench result averages five attempts on each of 89 tasks,
 not pass@5. See [evaluation details, recorded failures, and reproduction limits](BENCHMARKS.md).
+
+## Define a tool with Pydantic
+
+A tool combines a Pydantic input model, a Python function, and a `ToolDefinition`.
+After installing and exporting `DEEPSEEK_API_KEY` (see [Get started](#get-started)),
+pass your definitions to the agent to choose which tools it can use:
+
+```python
+from pydantic import BaseModel, ConfigDict, Field
+
+from mini_harness.agent import DeepSeekAgent
+from mini_harness.tool.box import TOOLS, ToolDefinition
+
+
+class CountWordsInput(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    text: str = Field(min_length=1, description="Text to count words in.")
+
+
+def count_words(args: CountWordsInput) -> str:
+    return str(len(args.text.split()))
+
+
+count_words_tool = ToolDefinition(
+    name="count_words",
+    description="Count whitespace-separated words in text.",
+    parameters=CountWordsInput,
+    function=count_words,
+    risky=False,
+)
+
+agent = DeepSeekAgent([*TOOLS, count_words_tool])
+```
+
+The agent uses `model_json_schema()` to describe each tool to the model.
+Before dispatch, the [tool executor](src/mini_harness/tool/box.py) calls
+`model_validate_json()` to validate its arguments; invalid calls return an error
+for the agent to correct. One definition keeps the schema, validation, and
+execution connected. See the [Pydantic model documentation](https://docs.pydantic.dev/latest/concepts/models/).
 
 ## Get started
 
