@@ -58,7 +58,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
 ```sh
-git clone https://github.com/FengYe476/mini-harness.git
+git clone https://github.com/mini-harness/mini-harness.git
 cd mini-harness
 uv python install 3.12
 uv sync --locked
