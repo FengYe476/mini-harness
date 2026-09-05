@@ -511,7 +511,6 @@ class RunSandboxInput(BaseModel):
 
 
 def run_sandbox(inp: RunSandboxInput, cfg = CONFIG) -> str:
-    """One disposable Docker container per call; only sandbox/ is shared."""
     docker = shutil.which('docker')
     if not docker:
         raise RuntimeError('run_sandbox requires Docker. Install/start Docker, then run: docker pull python:3.12-slim')
@@ -524,7 +523,6 @@ def run_sandbox(inp: RunSandboxInput, cfg = CONFIG) -> str:
     if ',' in str(workspace):
         raise ValueError('Docker sandbox paths cannot contain commas')
     name = 'mini-harness-' + uuid.uuid4().hex
-    # This deadline also stops the container if the host process is forcibly killed.
     runner = (
         'import subprocess,sys\n'
         'try:\n'
@@ -546,7 +544,6 @@ def run_sandbox(inp: RunSandboxInput, cfg = CONFIG) -> str:
         '--entrypoint', 'python', 'python:3.12-slim', '-u', '-c', runner,
         inp.command, str(inp.timeout_seconds),
     ]
-    # Drain output continuously, retaining only a bounded prefix in host memory.
     output = bytearray()
     clipped = False
     def drain(pipe):
@@ -567,7 +564,6 @@ def run_sandbox(inp: RunSandboxInput, cfg = CONFIG) -> str:
         raise TimeoutError('Docker sandbox startup or execution timed out') from error
     finally:
         try:
-            # --rm handles normal exits; force removal also handles Ctrl+C and timeouts.
             cleanup = subprocess.run([docker, 'rm', '-f', name], capture_output=True,
                                      timeout=5, env=cfg.bash_env)
             if cleanup.returncode and b'No such container' not in cleanup.stderr:

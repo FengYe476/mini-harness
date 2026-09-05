@@ -117,7 +117,6 @@ class DeepSeekAgent:
 
             try:
                 response = e.get_final_completion()
-                # Preserve provider-specific deltas even if the SDK does not accumulate them.
                 response.choices[0].message.reasoning_content = reasoning
             except LengthFinishReasonError as ex:
                 truncated = buffer

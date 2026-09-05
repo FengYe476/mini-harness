@@ -5,12 +5,6 @@
 #   "pydantic==2.13.4", "python-dotenv==1.2.2",
 # ]
 # ///
-"""Single-file terminal UI. Run: uv run tui.py [--demo]. No model calls in demo.
-
-UI, styles, session storage and process adapters live here. The existing agent
-is imported only in a child process. Ctrl+C cancels its process group; completed
-file edits are not rolled back. Session files live in .local/tui-sessions/.
-"""
 
 from __future__ import annotations
 
@@ -49,7 +43,6 @@ def atomic_json(path: Path, value: object) -> None:
 
 
 def paired_history(messages: list[dict]) -> list[dict]:
-    """Repair only unanswered tool calls after cancellation or a process crash."""
     repaired, pending = [], {}
     for message in messages:
         if message.get("role") != "tool" and pending:
@@ -69,7 +62,6 @@ def paired_history(messages: list[dict]) -> list[dict]:
 
 
 def agent_worker() -> None:
-    """JSON lines on stdout; stdin carries a task followed by approval replies."""
     channel = sys.stdout
 
     def emit(kind: str, **data: object) -> None:

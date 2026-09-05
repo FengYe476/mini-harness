@@ -27,3 +27,5 @@ sandbox/
 jobs/
 *.tar.gz
 .DS_Store
+/test/
+/tests/

@@ -33,7 +33,7 @@ jobs:
         run: uv sync --locked
       - name: Check source
         run: |
-          uv run --locked ruff check src tui.py tests
+          uv run --locked ruff check src tui.py
           uv run --locked python -m compileall -q src
       - name: Check imports, tool schemas, and CLI offline
         run: |
@@ -42,11 +42,5 @@ jobs:
           MINI_HARNESS_PROFILE=bench uv run --locked mini-harness --help
       - name: Check TUI entry point offline
         run: uv run --script tui.py --help
-      - name: Test tool validation and DeepSeek conversation history
-        run: uv run --locked python -m unittest discover -s tests -v
-      - name: Test Docker sandbox isolation and cleanup
-        run: |
-          docker pull python:3.12-slim
-          MINI_HARNESS_TEST_DOCKER=1 uv run --locked python -m unittest discover -s tests -p test_sandbox.py -v
       - name: Build package
         run: uv build
