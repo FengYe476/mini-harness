@@ -39,6 +39,15 @@ entries are listed submissions, not marked as checked by the SWE-bench team.
 The scores here have not been accepted as official mini-harness leaderboard
 submissions; they should not be described as an official rank or a SOTA claim.
 
+The [README comparison figure](README.md#benchmarks) includes all **18 public
+Terminal-Bench 2.1 entries** visible on that date plus this self-reported run.
+Positions are recomputed by descending score, retaining ties. The inserted
+mini-harness result is **13th of 19**, between Terminus 2 + Gemini 3 Pro (high),
+73.9% ±2.5%, and Claude Code + Opus 4.7 (max), 68.9% ±2.8%. This is an
+illustrative score order, not an official leaderboard placement. Public rows
+show their published 95% confidence intervals; no interval was computed for
+mini-harness.
+
 ### Recorded exceptions and reproducibility
 
 The archived evaluations were **not error-free**:

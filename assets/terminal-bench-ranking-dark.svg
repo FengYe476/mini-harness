@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1086" viewBox="0 0 1000 1086" role="img" aria-labelledby="title description">
+<title id="title">Terminal-Bench 2.1: mini-harness is 13th of 19 when inserted by score</title>
+<desc id="description">September 4, 2026 snapshot of 18 public leaderboard entries plus the self-reported mini-harness result of 69.44 percent. Positions are recomputed for this comparison and are not an official mini-harness rank. Official entries include their published 95 percent confidence intervals.</desc>
+<rect x="0.5" y="0.5" width="999" height="1085" rx="18" fill="#0d1117" stroke="#283440"/>
+<g font-family="Arial, Helvetica, sans-serif" font-variant-numeric="tabular-nums">
+<text x="34" y="39" fill="#6edbc5" font-size="13" font-weight="700" text-anchor="start" letter-spacing="1.6">MINI-HARNESS  /  BENCHMARKS</text>
+<text x="34" y="85" fill="#e8eef5" font-size="32" font-weight="700" text-anchor="start" >Terminal-Bench 2.1</text>
+<text x="34" y="115" fill="#9daebb" font-size="17" font-weight="400" text-anchor="start" >18 public entries + our self-reported baseline</text>
+<rect x="768" y="28" width="198" height="96" rx="12" fill="#14312e"/>
+<text x="867" y="56" fill="#6edbc5" font-size="11" font-weight="700" text-anchor="middle" letter-spacing="1">POSITION BY SCORE</text>
+<text x="867" y="94" fill="#6edbc5" font-size="31" font-weight="700" text-anchor="middle" >13th* / 19</text>
+<text x="34" y="156" fill="#9daebb" font-size="12" font-weight="700" text-anchor="start" letter-spacing="1">SNAPSHOT  ·  04 SEP 2026</text>
+<text x="966" y="156" fill="#9daebb" font-size="13" font-weight="400" text-anchor="end" >Higher is better</text>
+<path d="M24 175H976" stroke="#283440"/>
+<text x="57" y="202" fill="#9daebb" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="1">POS.*</text>
+<text x="108" y="202" fill="#9daebb" font-size="12" font-weight="700" text-anchor="start" letter-spacing="1">AGENT</text>
+<text x="344" y="202" fill="#9daebb" font-size="12" font-weight="700" text-anchor="start" letter-spacing="1">MODEL / EFFORT</text>
+<text x="760" y="202" fill="#9daebb" font-size="12" font-weight="700" text-anchor="end" letter-spacing="1">SCORE</text>
+<text x="950" y="202" fill="#9daebb" font-size="12" font-weight="700" text-anchor="end" letter-spacing="1">95% CI</text>
+<rect x="24" y="218" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="244" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >1</text>
+<text x="108" y="244" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Codex</text>
+<text x="344" y="244" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GPT-6 Astra (high)</text>
+<text x="760" y="244" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >87.4%</text>
+<rect x="786" y="235" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="235" width="62.93" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="244" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 1.8%</text>
+<rect x="24" y="258" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="284" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >2</text>
+<text x="108" y="284" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Claude Code</text>
+<text x="344" y="284" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Fable 5 (xhigh)</text>
+<text x="760" y="284" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >83.8%</text>
+<rect x="786" y="275" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="275" width="60.34" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="284" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.3%</text>
+<rect x="24" y="298" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="324" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >3</text>
+<text x="108" y="324" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Codex</text>
+<text x="344" y="324" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GPT-5.5 (xhigh)</text>
+<text x="760" y="324" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >83.2%</text>
+<rect x="786" y="315" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="315" width="59.90" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="324" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.2%</text>
+<rect x="24" y="338" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="364" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >4</text>
+<text x="108" y="364" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Terminus 2</text>
+<text x="344" y="364" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Fable 5 (high)</text>
+<text x="760" y="364" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >80.5%</text>
+<rect x="786" y="355" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="355" width="57.96" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="364" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.3%</text>
+<rect x="24" y="378" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="404" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >5</text>
+<text x="108" y="404" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Cursor CLI</text>
+<text x="344" y="404" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Grok 4.5 (high)</text>
+<text x="760" y="404" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >79.3%</text>
+<rect x="786" y="395" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="395" width="57.10" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="404" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.9%</text>
+<rect x="24" y="418" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="444" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >6</text>
+<text x="108" y="444" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Claude Code</text>
+<text x="344" y="444" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Opus 4.8 (high)</text>
+<text x="760" y="444" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >78.9%</text>
+<rect x="786" y="435" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="435" width="56.81" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="444" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.6%</text>
+<rect x="24" y="458" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="484" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >7</text>
+<text x="108" y="484" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Codex</text>
+<text x="344" y="484" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GPT-5.6 Terra (max)</text>
+<text x="760" y="484" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >78.4%</text>
+<rect x="786" y="475" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="475" width="56.45" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="484" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.5%</text>
+<rect x="24" y="498" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="524" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >8</text>
+<text x="108" y="524" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Terminus 2</text>
+<text x="344" y="524" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GPT-5.5 (xhigh)</text>
+<text x="760" y="524" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >78.0%</text>
+<rect x="786" y="515" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="515" width="56.16" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="524" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.4%</text>
+<rect x="24" y="538" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="564" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >9</text>
+<text x="108" y="564" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >mini-SWE-agent</text>
+<text x="344" y="564" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Muse Spark 1.1 (xhigh)</text>
+<text x="760" y="564" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >76.2%</text>
+<rect x="786" y="555" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="555" width="54.86" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="564" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.4%</text>
+<rect x="24" y="578" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="604" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >10</text>
+<text x="108" y="604" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Codex</text>
+<text x="344" y="604" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GPT-5.6 Luna (max)</text>
+<text x="760" y="604" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >75.7%</text>
+<rect x="786" y="595" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="595" width="54.50" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="604" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.6%</text>
+<rect x="24" y="618" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="644" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >11</text>
+<text x="108" y="644" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Claude Code</text>
+<text x="344" y="644" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Sonnet 5 (high)</text>
+<text x="760" y="644" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >74.6%</text>
+<rect x="786" y="635" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="635" width="53.71" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="644" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 3.2%</text>
+<rect x="24" y="658" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="684" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >12</text>
+<text x="108" y="684" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Terminus 2</text>
+<text x="344" y="684" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Gemini 3 Pro (high)</text>
+<text x="760" y="684" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >73.9%</text>
+<rect x="786" y="675" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="675" width="53.21" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="684" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.5%</text>
+<rect x="24" y="698" width="952" height="40" rx="5" fill="#14312e"/>
+<rect x="24" y="702" width="3" height="32" rx="1.5" fill="#6edbc5"/>
+<text x="57" y="724" fill="#6edbc5" font-size="18" font-weight="700" text-anchor="middle" >13*</text>
+<text x="108" y="716" fill="#6edbc5" font-size="18" font-weight="700" text-anchor="start" >mini-harness</text>
+<text x="108" y="731" fill="#6edbc5" font-size="9" font-weight="700" text-anchor="start" letter-spacing="1.1">SELF-REPORTED</text>
+<text x="344" y="724" fill="#6edbc5" font-size="17" font-weight="400" text-anchor="start" >DeepSeek V4 Flash</text>
+<text x="760" y="724" fill="#6edbc5" font-size="18" font-weight="700" text-anchor="end" >69.44%</text>
+<rect x="786" y="715" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="715" width="50.00" height="6" rx="3" fill="#6edbc5"/>
+<text x="950" y="724" fill="#6edbc5" font-size="16" font-weight="400" text-anchor="end" >—</text>
+<rect x="24" y="738" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="764" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >14</text>
+<text x="108" y="764" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Claude Code</text>
+<text x="344" y="764" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Opus 4.7 (max)</text>
+<text x="760" y="764" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >68.9%</text>
+<rect x="786" y="755" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="755" width="49.61" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="764" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.8%</text>
+<rect x="24" y="778" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="804" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >15</text>
+<text x="108" y="804" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Terminus 2</text>
+<text x="344" y="804" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Opus 4.7 (max)</text>
+<text x="760" y="804" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >66.1%</text>
+<rect x="786" y="795" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="795" width="47.59" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="804" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.7%</text>
+<rect x="24" y="818" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="844" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >16</text>
+<text x="108" y="844" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Gemini CLI</text>
+<text x="344" y="844" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Gemini 3 Pro (high)</text>
+<text x="760" y="844" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >65.8%</text>
+<rect x="786" y="835" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="835" width="47.38" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="844" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.7%</text>
+<rect x="24" y="858" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="884" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >16</text>
+<text x="108" y="884" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Gemini CLI</text>
+<text x="344" y="884" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Gemini 3.1 Pro (high)</text>
+<text x="760" y="884" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >65.8%</text>
+<rect x="786" y="875" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="875" width="47.38" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="884" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 3.3%</text>
+<rect x="24" y="898" width="952" height="40" rx="5" fill="#0d1117"/>
+<text x="57" y="924" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >18</text>
+<text x="108" y="924" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Terminus 2</text>
+<text x="344" y="924" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >Gemini 3.1 Pro (high)</text>
+<text x="760" y="924" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >65.6%</text>
+<rect x="786" y="915" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="915" width="47.23" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="924" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 3.2%</text>
+<rect x="24" y="938" width="952" height="40" rx="5" fill="#121a23"/>
+<text x="57" y="964" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="middle" >19</text>
+<text x="108" y="964" fill="#e8eef5" font-size="18" font-weight="400" text-anchor="start" >Claude Code</text>
+<text x="344" y="964" fill="#e8eef5" font-size="17" font-weight="400" text-anchor="start" >GLM-5.1 (max)</text>
+<text x="760" y="964" fill="#e8eef5" font-size="18" font-weight="700" text-anchor="end" >58.6%</text>
+<rect x="786" y="955" width="72" height="6" rx="3" fill="#283440"/>
+<rect x="786" y="955" width="42.19" height="6" rx="3" fill="#354b5a"/>
+<text x="950" y="964" fill="#9daebb" font-size="16" font-weight="400" text-anchor="end" >± 2.4%</text>
+<path d="M24 994H976" stroke="#283440"/>
+<text x="34" y="1019" fill="#e8eef5" font-size="15" font-weight="400" text-anchor="start" >* Positions include our self-reported run; mini-harness is not officially ranked.</text>
+<text x="34" y="1042" fill="#9daebb" font-size="14" font-weight="400" text-anchor="start" >309 / 445 attempts across 89 tasks · mean attempt accuracy, not pass@5.</text>
+<text x="34" y="1065" fill="#9daebb" font-size="14" font-weight="400" text-anchor="start" >Source: tbench.ai/?version=2.1 · Different agent/model systems; no significance claim.</text>
+</g>
+</svg>
