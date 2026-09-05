@@ -1,0 +1,29 @@
+# Credentials and local environments
+.env
+.env.*
+.venv/
+venv/
+
+# Python and tooling caches
+__pycache__/
+*.py[cod]
+.cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Local sessions, working files, and benchmark uploads
+session.json
+mini_harness_*.json
+mini_harness_*.jsonl
+sandbox/
+.local/
+jobs/
+*.tar.gz
+.DS_Store

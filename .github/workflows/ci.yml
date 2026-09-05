@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    env:
+      DEEPSEEK_API_KEY: ci-dummy-not-a-real-key
+      PYTHON_DOTENV_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up uv and Python
+        uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          version: "0.11.28"
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+      - name: Install locked dependencies
+        run: uv sync --locked
+      - name: Check source
+        run: |
+          uv run --locked ruff check src tui.py
+          uv run --locked python -m compileall -q src
+      - name: Check imports, tool schemas, and CLI offline
+        run: |
+          uv run --locked python -c "from mini_harness.agent import DeepSeekAgent; from mini_harness.tool.box import TOOLS; assert len(DeepSeekAgent(TOOLS).tools) == 8"
+          uv run --locked mini-harness --help
+          MINI_HARNESS_PROFILE=bench uv run --locked mini-harness --help
+      - name: Check TUI entry point offline
+        run: uv run --script tui.py --help
+      - name: Build package
+        run: uv build

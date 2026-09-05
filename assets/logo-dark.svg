@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="470" height="96" viewBox="0 0 470 96" role="img" aria-labelledby="title">
+  <title id="title">mini-harness</title>
+  <g transform="translate(8 16)"><path d="M24 12h-4a8 8 0 0 0-8 8v24a8 8 0 0 0 8 8h4m16-40h4a8 8 0 0 1 8 8v24a8 8 0 0 1-8 8h-4M24 32h16" fill="none" stroke="#6edbc5" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="94" y="63" fill="#e8eef5" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="700" letter-spacing="-1.8">mini-harness</text>
+</svg>

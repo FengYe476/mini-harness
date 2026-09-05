@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mini-harness"
+version = "0.1.0"
+description = "A minimal Python coding-agent harness"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "openai==2.45.0",
+    "httpx==0.28.1",
+    "pydantic==2.13.4",
+    "python-dotenv==1.2.2",
+]
+
+[project.urls]
+Repository = "https://github.com/FengYe476/mini-harness"
+
+[project.scripts]
+mini-harness = "mini_harness.main:main"
+
+[dependency-groups]
+dev = ["ruff>=0.6"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mini_harness"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/mini_harness", "pyproject.toml", "README.md"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src"]
+
+[tool.ruff.lint]
+# Keep the imported baseline intact; check syntax and definite name errors.
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.uv]
+cache-dir = ".cache/uv"
