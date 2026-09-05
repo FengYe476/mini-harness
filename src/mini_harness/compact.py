@@ -67,7 +67,7 @@ Please summarize those conversation history into a working summary report, follo
     def _compact_text(self, cut: int, response: str, message: list, cfg = CONFIG) -> list:
         return [
             message[0],
-            {'role': 'assistant', 'content': f'Here is the summary of the history conversation: {response}'},
+            {'role': 'assistant', 'content': f'Here is the summary of the history conversation: {response}', 'reasoning_content': ''},
             *message[cut:]
         ]
 
@@ -100,5 +100,4 @@ Please summarize those conversation history into a working summary report, follo
 COMPACT = CompactContent()
             
             
-
 

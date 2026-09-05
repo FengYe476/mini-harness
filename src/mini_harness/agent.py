@@ -43,6 +43,7 @@ class DeepSeekAgent:
         self.message = list(self.system)
         self.session_memory = cfg.session_path if cfg.session_path else cfg.work_space/'session.json'
         self.last_usage = None
+        self.last_reasoning = ''
         return
 
     def _load_memory(self, cfg = CONFIG) -> list:
@@ -72,6 +73,7 @@ class DeepSeekAgent:
 
     def _request_agent(self, client: OpenAI, cfg = CONFIG):
         buffer = ''
+        reasoning = ''
         streaming = False
         truncated = None
         with client.chat.completions.stream(
@@ -108,12 +110,15 @@ class DeepSeekAgent:
                     if d.chunk.choices:
                         res = getattr(d.chunk.choices[0].delta, 'reasoning_content', None)
                         if res:
+                            reasoning += res
                             print(res, end = '', flush = True)
                 if d.type == 'tool_calls.function.arguments.delta':
                     pass
 
             try:
                 response = e.get_final_completion()
+                # Preserve provider-specific deltas even if the SDK does not accumulate them.
+                response.choices[0].message.reasoning_content = reasoning
             except LengthFinishReasonError as ex:
                 truncated = buffer
                 comp = getattr(ex, 'completion', None)
@@ -126,6 +131,7 @@ class DeepSeekAgent:
             if buffer:
                 print(buffer, end = '', flush = True)
             self.printed = buffer
+        self.last_reasoning = reasoning
         return response, truncated
 
     def _fill_interrupted(self, tool_calls, cfg = CONFIG) -> None:
@@ -160,7 +166,8 @@ class DeepSeekAgent:
                 if truncated is not None:
                     note = ('\n\n[Your previous response was cut off at the output token limit. Be more concise, or take an action instead of continuing to reason.]')
                     self.message.append({
-                        'role': 'assistant', 'content': truncated + note
+                        'role': 'assistant', 'content': truncated + note,
+                        'reasoning_content': self.last_reasoning
                     })
                     com_degree = self.last_usage
                     if com_degree is not None:
@@ -181,7 +188,6 @@ class DeepSeekAgent:
                 if message.tool_calls:
                     print()
                     d = message.model_dump(exclude_none = True)
-                    d.pop('reasoning_content', None)
                     self.message.append(d)
                     try:
                         for tool_call in message.tool_calls:
@@ -206,7 +212,7 @@ class DeepSeekAgent:
                 else:
                     outcome = OUTCOME.COMPLETED
                     self.message.append(
-                        {'role': 'assistant', 'content': message.content}
+                        message.model_dump(exclude_none=True)
                     )
                     self._save_memory(quiet=True)
                     break

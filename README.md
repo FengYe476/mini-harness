@@ -7,14 +7,14 @@
 </div>
 
 <p align="center">
-  <img src="assets/demo.gif" alt="mini-harness offline demo: conversation, tool approval, and expandable tool details" width="900">
+  <img src="assets/demo.gif" alt="Real DeepSeek Agent writes a Python file, runs it in a Docker sandbox, and answers a follow-up question" width="900">
   <br>
-  <sub>Offline TUI demo · scripted responses · no API calls</sub>
+  <sub>Real DeepSeek V4 Flash · writes and runs code · edited playback</sub>
 </p>
 
 ## Why mini-harness?
 
-- **Small, but complete.** About 1,600 lines of Python: eight tools, context
+- **Small, but complete.** About 1,700 lines of Python: nine tools, context
   compaction, request retries, streaming responses, and session memory.
 - **Tools defined with Pydantic.** Typed inputs, generated JSON Schema, and
   validation before execution make tools easier to compose and orchestrate.
@@ -27,7 +27,8 @@
 
 ## Benchmarks
 
-Historical, self-reported results with **DeepSeek V4 Flash**.
+Historical, self-reported results with **DeepSeek V4 Flash**. The latest source
+changes have not been re-evaluated on these benchmarks.
 
 | Benchmark | Solved / attempts | Score |
 | --- | ---: | ---: |
@@ -119,8 +120,23 @@ uv run tui.py
 `Ctrl+E` expands tools · `Ctrl+C` cancels · `Ctrl+Q` quits.
 
 The agent reads the project workspace; local file tools write to `sandbox/`.
-The TUI asks before shell or subagent calls. Sessions stay in `.local/` and are
+The TUI asks before shell, sandbox, or subagent calls. Sessions stay in `.local/` and are
 ignored by Git. Cancelling a task keeps file edits already completed.
+
+To run generated code with `run_sandbox`, install and start
+[Docker](https://docs.docker.com/get-started/get-docker/), then pull its Python image once:
+
+```sh
+docker pull python:3.12-slim
+```
+
+`run_sandbox` is a Pydantic-defined tool accepting `command` and
+`timeout_seconds` (1–300, default 30). It runs in a disposable Python 3.12
+container with networking disabled, a read-only system, and limits of one CPU,
+256 MB RAM, and 64 processes. Only `sandbox/` is mounted at `/workspace`; changes
+there persist. For example, `{"command": "python hello.py"}` runs
+`sandbox/hello.py`. No host environment variables are forwarded into the container.
+The host `run_bash` tool remains available and is not isolated.
 
 For the plain terminal interface:
 

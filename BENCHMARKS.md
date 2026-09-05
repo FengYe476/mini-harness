@@ -9,7 +9,10 @@ Both archives identify the agent source version as `d8b0fb7`, the model as
 `deepseek-v4-flash`, and the runner as Harbor 0.20.0. The Terminal-Bench run was
 recorded on August 14–16, 2026; the SWE-bench run on August 20–22, 2026. The imported
 source baseline is commit `d8b0fb7974ec934252df1e06488f65a494699002`, with project
-naming updated. These historical scores do not evaluate the new TUI.
+naming updated. These historical scores do not evaluate the new TUI, Docker
+sandbox tool, or subsequent fixes that preserve DeepSeek reasoning across tool
+calls and conversation turns. The current source has not been re-evaluated on
+these benchmarks.
 
 The Terminal-Bench score averages all 445 attempts; it is **not pass@5**. The
 SWE-bench denominator includes all 500 tasks, including two tasks without a
@@ -67,4 +70,3 @@ leaderboard submission. This source-only repository includes the agent and its
 unattended profile; the external Harbor adapter, job definitions, and raw
 benchmark archives are not bundled, so the historical evaluations are not yet
 reproducible from this checkout alone.
-

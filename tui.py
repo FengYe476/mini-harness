@@ -113,7 +113,7 @@ def agent_worker() -> None:
                     needs_tool = self.message[-1]["role"] == "user"
                     if "what can mini-harness do" in prompt.lower():
                         needs_tool = False
-                        text = ("Eight tools, context compaction, and request retries in a small Python "
+                        text = ("Nine tools, context compaction, and request retries in a small Python "
                                 "agent. Give me a task and follow each step as it streams here.")
                     elif "beginner" in prompt.lower() or "learn agents" in prompt.lower():
                         needs_tool = False
@@ -594,7 +594,7 @@ class MiniHarness(App):
             with contextlib.suppress(ProcessLookupError):
                 os.killpg(proc.pid, sig)
             try:
-                await asyncio.wait_for(proc.wait(), timeout=0.7)
+                await asyncio.wait_for(proc.wait(), timeout=6 if sig == signal.SIGINT else 0.7)
                 break
             except asyncio.TimeoutError:
                 continue

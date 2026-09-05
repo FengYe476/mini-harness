@@ -6,6 +6,9 @@ import subprocess
 import json
 import time
 import hashlib
+import shutil
+import threading
+import uuid
 
 from pathlib import Path
 from dataclasses import dataclass
@@ -501,6 +504,89 @@ def run_bash(inp: RunBashInput, cfg = CONFIG) -> str:
         content = content[:cfg.bash_limit] + f'\n[.....truncated at {cfg.bash_limit} of {origin}, , Narrow the command (grep/head/tail) or redirect to a file and read it with offset/limit]'  
     return content  
 
+class RunSandboxInput(BaseModel):
+    model_config = ConfigDict(extra='forbid')
+    command: Nonblank = Field(description='Shell command inside an isolated Python container. sandbox/ is mounted at /workspace; use paths relative to it.')
+    timeout_seconds: int = Field(default=30, ge=1, le=300, strict=True, description='Maximum command runtime in seconds.')
+
+
+def run_sandbox(inp: RunSandboxInput, cfg = CONFIG) -> str:
+    """One disposable Docker container per call; only sandbox/ is shared."""
+    docker = shutil.which('docker')
+    if not docker:
+        raise RuntimeError('run_sandbox requires Docker. Install/start Docker, then run: docker pull python:3.12-slim')
+    root = cfg.work_space.resolve()
+    workspace = cfg.sandbox_dir
+    if workspace.is_symlink() or not workspace.resolve().is_relative_to(root):
+        raise PermissionError('sandbox/ must be a real directory inside the workspace')
+    workspace.mkdir(parents=True, exist_ok=True)
+    workspace = workspace.resolve()
+    if ',' in str(workspace):
+        raise ValueError('Docker sandbox paths cannot contain commas')
+    name = 'mini-harness-' + uuid.uuid4().hex
+    # This deadline also stops the container if the host process is forcibly killed.
+    runner = (
+        'import subprocess,sys\n'
+        'try:\n'
+        ' p=subprocess.run(sys.argv[1],shell=True,timeout=int(sys.argv[2]))\n'
+        ' sys.exit(p.returncode if p.returncode >= 0 else 128-p.returncode)\n'
+        'except subprocess.TimeoutExpired:\n'
+        ' print("[sandbox command timed out]",flush=True)\n'
+        ' sys.exit(124)\n'
+    )
+    command = [
+        docker, 'run', '--rm', '--pull=never', '--name', name,
+        '--label', 'mini-harness.sandbox=true', '--network=none', '--read-only',
+        '--cap-drop=ALL', '--security-opt=no-new-privileges', '--pids-limit=64',
+        '--memory=256m', '--memory-swap=256m', '--cpus=1', '--log-driver=none',
+        '--ulimit', 'fsize=16777216:16777216', '--user', f'{os.getuid()}:{os.getgid()}',
+        '--tmpfs', '/tmp:rw,nosuid,nodev,size=64m,mode=1777',
+        '--mount', f'type=bind,src={workspace},dst=/workspace', '--workdir', '/workspace',
+        '--env', 'HOME=/tmp', '--env', 'PYTHONDONTWRITEBYTECODE=1',
+        '--entrypoint', 'python', 'python:3.12-slim', '-u', '-c', runner,
+        inp.command, str(inp.timeout_seconds),
+    ]
+    # Drain output continuously, retaining only a bounded prefix in host memory.
+    output = bytearray()
+    clipped = False
+    def drain(pipe):
+        nonlocal clipped
+        with pipe:
+            while chunk := pipe.read(8192):
+                remaining = max(0, cfg.bash_limit - len(output))
+                output.extend(chunk[:remaining])
+                clipped |= len(chunk) > remaining
+
+    process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                               stdin=subprocess.DEVNULL, env=cfg.bash_env, start_new_session=True)
+    reader = threading.Thread(target=drain, args=(process.stdout,), daemon=True)
+    reader.start()
+    try:
+        process.wait(timeout=inp.timeout_seconds + 10)
+    except subprocess.TimeoutExpired as error:
+        raise TimeoutError('Docker sandbox startup or execution timed out') from error
+    finally:
+        try:
+            # --rm handles normal exits; force removal also handles Ctrl+C and timeouts.
+            cleanup = subprocess.run([docker, 'rm', '-f', name], capture_output=True,
+                                     timeout=5, env=cfg.bash_env)
+            if cleanup.returncode and b'No such container' not in cleanup.stderr:
+                raise RuntimeError(f'Could not remove sandbox container {name}: ' + cleanup.stderr.decode(errors='replace'))
+        finally:
+            if process.poll() is None:
+                process.kill()
+            process.wait()
+            reader.join(timeout=1)
+    text = output.decode('utf-8', errors='replace') or 'no result'
+    if clipped:
+        text += f'\n[output truncated at {cfg.bash_limit} bytes]'
+    if process.returncode:
+        if process.returncode == 124:
+            raise TimeoutError(f'Sandbox exceeded {inp.timeout_seconds}s.\n{text}')
+        raise RuntimeError(f'Sandbox exited with code {process.returncode}.\n{text}')
+    return text
+
+
 class StatusItem(str, Enum):
     completed = 'completed'
     pending = 'pending'
@@ -580,7 +666,6 @@ completed the task by giving the summary and analyzing report
         message = response.choices[0].message
         if message.tool_calls:
             d = message.model_dump(exclude_none = True)
-            d.pop('reasoning_content', None)
             sub_message.append(d)
             for tool_call in message.tool_calls:
                 res = executer.execute_tool(tool_call, cfg = cfg)
@@ -591,7 +676,7 @@ completed the task by giving the summary and analyzing report
                 )
         else:
             sub_message.append(
-                {'role': 'assistant', 'content': message.content}
+                message.model_dump(exclude_none=True)
             )
             end = time.time() -start
             print(f'[{inp.agent_type.value}]: {inp.task_description} -- {tool_count} tools -- {end:.1f}s')
@@ -615,6 +700,7 @@ TOOLS = [
     ToolDefinition('write_file', 'Create a new file. To replace an existing file entirely you must have read it in full first and pass overwrite=true; for partial changes use edit_file instead.', WriteFileInput, write_file, False),
     ToolDefinition('edit_file', 'Replace a specific string in an existing file. You must have read the file first, and it must not have changed since. old_string must match the file exactly and must not contain line-number prefixes. On success the tool echoes the resulting lines with their real line numbers.', EditFileInput, edit_file, False),
     ToolDefinition('run_bash', 'operate the terminal by using the command', RunBashInput, run_bash, True),
+    ToolDefinition('run_sandbox', 'Run code in a disposable Docker Python 3.12 container with no network and resource limits. Only sandbox/ is shared, as /workspace; writes there persist. Requires Docker and a locally pulled python:3.12-slim image. Prefer this for running generated code; run_bash executes on the host.', RunSandboxInput, run_sandbox, True),
     ToolDefinition('run_todo', 'build and update the todo list', RunTodoInput, run_todo, False),
     ToolDefinition('run_subagent', 'build and run the subagent to finish the task', RunSubAgentInput, run_subagent, True)
 ]
@@ -636,5 +722,4 @@ if not (READ_TOOLS | WRITE_TOOLS) <= _names:
     
 
     
-
 

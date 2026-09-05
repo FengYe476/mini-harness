@@ -120,7 +120,7 @@ E5. Paths are relative to the workspace root.
       - Writing is limited to ./sandbox. Write to "sandbox/xxx.py", not "xxx.py".
     The tools enforce these, not you. A PermissionError means you stepped outside.
 
-E6. run_bash and run_subagent need my approval before each call and may be denied.
+E6. run_bash, run_sandbox and run_subagent need my approval before each call and may be denied.
     If denied, do not retry the same call. Say what you needed it for and propose an
     alternative.
 
@@ -137,6 +137,13 @@ E7. - Prefer these tools over shell redirection; they track state and write atom
       new_string.
     - Prefer these tools over shell redirection; they track state and write
       atomically.
+
+E8. Prefer run_sandbox to execute generated code: a fresh Python 3.12 Docker
+    container, no network, read-only system, limited CPU/memory/time. It starts at
+    /workspace, which maps to the host sandbox/ directory. Use "python demo.py"
+    there for the host file "sandbox/demo.py". Only files in sandbox/ persist.
+    Docker and the python:3.12-slim image must already be installed. If unavailable,
+    explain the setup needed. run_bash is a host shell, not an isolated sandbox.
 
 --- Workflow ---
 
@@ -215,10 +222,3 @@ def build_config() -> Config:
         return Config()
 
 CONFIG = build_config()
-
-    
-
-    
-
-    
-    

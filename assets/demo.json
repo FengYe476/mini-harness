@@ -1,0 +1,63 @@
+{
+  "model": "deepseek-v4-flash",
+  "capture": "Actual Textual TUI and on-disk file snapshots",
+  "api": "https://api.deepseek.com",
+  "scripted_model_responses": false,
+  "editing": "Smooth camera motion and retimed playback; no fabricated output or code states",
+  "questions": 2,
+  "source_seconds": 24.495,
+  "gif_seconds": 32,
+  "gif_frames": 156,
+  "bytes": 6681083,
+  "result": [
+    {
+      "outcome": "completed",
+      "calls": 4,
+      "turns": 5,
+      "ok": 3,
+      "failed_by_tag": {
+        "exists": 1
+      },
+      "calls_by_tool": {
+        "read_file": 1,
+        "write_file": 2,
+        "run_sandbox": 1
+      },
+      "last_prompt": 4026,
+      "prompt_total": 18637,
+      "completion_total": 449,
+      "wall": 8.408583879470825,
+      "err": ""
+    },
+    {
+      "outcome": "completed",
+      "calls": 1,
+      "turns": 2,
+      "ok": 1,
+      "failed_by_tag": {},
+      "calls_by_tool": {
+        "run_sandbox": 1
+      },
+      "last_prompt": 4185,
+      "prompt_total": 8285,
+      "completion_total": 95,
+      "wall": 4.53842306137085,
+      "err": ""
+    }
+  ],
+  "file": "sandbox/demo/words.py",
+  "verification": [
+    {
+      "input": "small tools real work small tools",
+      "total": 6,
+      "unique": 4
+    },
+    {
+      "input": "hello hello harness",
+      "total": 3,
+      "unique": 2
+    }
+  ],
+  "tool_guard_recovery": "One initial write was rejected for missing overwrite=true; the agent corrected the call.",
+  "rendered_frames": 400
+}
